@@ -1,0 +1,6 @@
+main: com.Theeef.me.IntergatePlugin
+name: Itergate
+author: Theeef
+version: 1.0.0
+description: The core plugin for Theeef's iterative MMORPG project
+api-version: '1.20'
