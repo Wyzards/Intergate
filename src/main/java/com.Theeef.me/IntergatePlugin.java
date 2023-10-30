@@ -1,10 +1,8 @@
 package com.Theeef.me;
 
-import com.Theeef.me.items.weapons.Dagger;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,22 +14,20 @@ public class IntergatePlugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
-        Bukkit.getConsoleSender().sendMessage(Component.text(NamedTextColor.GREEN + "Intergate is online"));
     }
 
     @Override
     public void onLoad() {
-        Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(Component.text("Intergate version " + 1).toBuilder().build()));
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(Component.text("Intergate loaded ", NamedTextColor.GREEN).toBuilder().build()));
+    }
+
+    public TextComponent s(String string) {
+        return Component.text(string, NamedTextColor.GRAY);
     }
 
     @EventHandler
-    public void playerJoin(AsyncPlayerChatEvent event) {
-        event.getPlayer().getInventory().addItem(Dagger.getItemStack());
-
-        TextComponent text = Component.text("RED ITALICS", NamedTextColor.RED).decoration(TextDecoration.ITALIC, true).append(Component.text(" AQUA NONITALICS", NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false));
-        event.getPlayer().sendMessage(text);
-        event.getPlayer().sendMessage(text.color().toString());
-        event.getPlayer().sendMessage(text.decorations().toString());
+    public void playerChatEvent(AsyncPlayerChatEvent event) {
+        event.getPlayer().getInventory().addItem(Spellcasting.spellBookTest());
     }
 
 }
